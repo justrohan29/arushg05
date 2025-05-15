@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I’m Sorry 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #dceeff, #a2c7f4);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .envelope {
+      background: #ffffffee;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      animation: slideIn 1s ease forwards;
+      transform: translateY(30px);
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .envelope h1 {
+      font-size: 2rem;
+      color: #084c84;
+      margin-bottom: 1rem;
+      animation: fadeIn 1.5s ease 1s forwards;
+      opacity: 0;
+    }
+
+    .message {
+      background-color: #fefefe;
+      border-radius: 12px;
+      padding: 1rem;
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.6;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+      height: 300px;
+      overflow-y: auto;
+      opacity: 0;
+      text-align: left;
+      white-space: pre-line;
+    }
+
+    .show .message {
+      animation: typeIn 2.5s steps(80, end) forwards;
+    }
+
+    .reveal-btn {
+      margin-top: 1.5rem;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .reveal-btn:hover {
+      background-color: #3973b8;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes typeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff4d6d;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff4d6d;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(45deg) scale(0.8);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .message {
+        height: 250px;
+        font-size: 0.95rem;
+      }
+
+      .envelope h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+
+  <audio id="my-audio" style="display:none;">
+    <source src="song.mp3" type="audio/mpeg" />
+  </audio>
+</head>
+<body>
+  <div class="hearts" id="hearts-container"></div>
+
+  <div class="envelope" id="card">
+    <h1>I’m sorry, Taarushi Singh 💙</h1>
+    <div class="message" id="message">
+      I’m really, really sorry. For being too much, for making things heavier when they should’ve been light. For not keeping my word the way I should have. I made things harder when I should’ve made them easier. And I truly regret that.
+
+      I know things feel completely messed up right now, maybe even unfixable. And maybe you’re tired, angry, or just done. But I still believe in US. Maybe foolishly, maybe hopelessly... but I do.
+
+      I’m not here with big dramatic lines or empty promises. But I swear on you, I’m working on myself. I’m learning. I’ll keep learning. Fast learner hoon, duhhhhh — and you know that 😉. So thoda time de and dekhna, seekh jaaunga everything you ever needed me to understand.
+
+      You once saw something good in me — something soft and lovable and worth trusting. And I swear, I’ll become that person again. But better. Kinder. Calmer. Someone you’d feel safe with, not stressed because of.
+
+      I really do love you, Taarushi. Not clingy crush (okay maybe 105% dramebaaz cause I WANNA LOVE YOU LIKE THE MOVIES), but actual love that wants to grow — not trap or suffocate. The kind that listens. That gives peace. That understands.
+
+      If you need time, I’ll wait. If you want to go slow, I’ll slow down. But please don’t walk away completely. Please don’t let this be where our story ends.
+
+      Let me earn that smile again. Let me win back the trust — not with one grand gesture, but a hundred little ones.
+
+      I’m sorry for everything I’ve done wrong. And I mean it — I’ll make it right. Just please don’t give up on me yet.
+
+      Forever yours (and forever dumb but trying),
+      
+    </div>
+    <button class="reveal-btn" id="revealBtn" onclick="revealMessage()">Tap to Read</button>
+  </div>
+
+  <script>
+    const audio = document.getElementById('my-audio');
+    const card = document.getElementById('card');
+    const message = document.getElementById('message');
+    const btn = document.getElementById('revealBtn');
+    const heartsContainer = document.getElementById('hearts-container');
+
+    function playAudioOnce() {
+      audio.play().catch(() => {});
+      window.removeEventListener('click', playAudioOnce);
+      window.removeEventListener('keydown', playAudioOnce);
+    }
+
+    window.addEventListener('click', playAudioOnce);
+    window.addEventListener('keydown', playAudioOnce);
+
+    function revealMessage() {
+      card.classList.add('show');
+      message.style.opacity = 1;
+      btn.disabled = true;
+      btn.innerText = "Thank you for reading 💙";
+
+      setTimeout(() => {
+        showForgivenessSection();
+      }, 4000);
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 350);
+
+    function showForgivenessSection() {
+      const forgiveDiv = document.createElement('div');
+      forgiveDiv.id = "forgive-section";
+      forgiveDiv.style.marginTop = "2rem";
+      forgiveDiv.innerHTML = `
+        <h2 style="color:#084c84; margin-bottom: 1rem;">Do you forgive me?</h2>
+        <div id="btn-container">
+          <button class="reveal-btn" onclick="forgiveYes()">Yes</button>
+          <button class="reveal-btn" onclick="forgiveNo()">No</button>
+        </div>
+      `;
+      card.appendChild(forgiveDiv);
+    }
+
+    function forgiveYes() {
+      const forgiveDiv = document.getElementById('forgive-section');
+      forgiveDiv.innerHTML = `<h2 style="color:#e6005c; font-size: 1.8rem;">I ll keep you safe Taarushi ❤️</h2>`;
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+    }
+
+    function forgiveNo() {
+      const btnContainer = document.getElementById('btn-container');
+      btnContainer.innerHTML = `
+        <button class="reveal-btn" onclick="forgiveYes()">Yes</button>
+        <button class="reveal-btn" onclick="forgiveNo()">No</button>
+      `;
+    }
+  </script>
+</body>
+</html>
