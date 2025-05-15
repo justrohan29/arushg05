@@ -153,7 +153,22 @@
         opacity: 0;
       }
     }
+
+    @media screen and (max-width: 600px) {
+      .message {
+        height: 250px;
+        font-size: 0.95rem;
+      }
+
+      .envelope h1 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
+
+  <audio id="my-audio" style="display:none;">
+    <source src="song.mp3" type="audio/mpeg" />
+  </audio>
 </head>
 <body>
   <div class="hearts" id="hearts-container"></div>
@@ -184,15 +199,42 @@
   </div>
 
   <script>
+    const audio = document.getElementById('my-audio');
+    const card = document.getElementById('card');
+    const message = document.getElementById('message');
+    const btn = document.getElementById('revealBtn');
+    const heartsContainer = document.getElementById('hearts-container');
+
+    function playAudioOnce() {
+      audio.play().catch(() => {});
+      window.removeEventListener('click', playAudioOnce);
+      window.removeEventListener('keydown', playAudioOnce);
+    }
+
+    window.addEventListener('click', playAudioOnce);
+    window.addEventListener('keydown', playAudioOnce);
+
     function revealMessage() {
-      document.getElementById('card').classList.add('show');
-      document.getElementById('message').style.opacity = 1;
-      document.getElementById('revealBtn').innerText = "Thank you for reading 💙";
+      card.classList.add('show');
+      message.style.opacity = 1;
+      btn.disabled = true;
+      btn.innerText = "Thank you for reading 💙";
 
       setTimeout(() => {
         showForgivenessSection();
       }, 4000);
     }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 350);
 
     function showForgivenessSection() {
       const forgiveDiv = document.createElement('div');
@@ -205,35 +247,24 @@
           <button class="reveal-btn" onclick="forgiveNo()">No</button>
         </div>
       `;
-      document.getElementById('card').appendChild(forgiveDiv);
+      card.appendChild(forgiveDiv);
     }
 
     function forgiveYes() {
-      document.getElementById('forgive-section').innerHTML = `<h2 style="color:#e6005c; font-size: 1.8rem;">I'll keep you safe, Taarushi ❤️</h2>`;
+      const forgiveDiv = document.getElementById('forgive-section');
+      forgiveDiv.innerHTML = `<h2 style="color:#e6005c; font-size: 1.8rem;">I ll keep you safe Taarushi ❤️</h2>`;
       for (let i = 0; i < 30; i++) {
         setTimeout(createHeart, i * 100);
       }
     }
 
     function forgiveNo() {
-      setTimeout(() => {
-        document.getElementById('btn-container').innerHTML = `
-          <button class="reveal-btn" onclick="forgiveYes()">Yes</button>
-          <button class="reveal-btn">Still thinking?</button>
-        `;
-      }, 2000);
+      const btnContainer = document.getElementById('btn-container');
+      btnContainer.innerHTML = `
+        <button class="reveal-btn" onclick="forgiveYes()">Yes</button>
+        <button class="reveal-btn" onclick="forgiveNo()">No</button>
+      `;
     }
-
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.animationDuration = `${3 + Math.random() * 3}s`;
-      document.getElementById('hearts-container').appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }
-
-    setInterval(createHeart, 350);
   </script>
 </body>
 </html>
